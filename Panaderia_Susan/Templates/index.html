@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panadería Susan | Pan artesanal</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
+
+        <a href="/" class="logo">
+            <span class="logo-icono">🥖</span>
+            <span>Panadería Susan</span>
+        </a>
+
+        <nav class="navegacion">
+            <a href="/" class="activo">Inicio</a>
+            <a href="{{ url_for('catalogo') }}">Catálogo</a>
+            <a href="#nosotros">Nosotros</a>
+        </nav>
+
+        <div class="acciones">
+            <div class="acciones">
+
+    {% if session.get('usuario') %}
+
+        <span class="usuario-bienvenida">
+            Hola, {{ session.get('usuario') }}
+        </span>
+
+        <a href="{{ url_for('logout') }}" class="enlace-login">
+            Cerrar sesión
+        </a>
+
+    {% else %}
+
+        <a href="{{ url_for('login') }}" class="enlace-login">
+            Iniciar sesión
+        </a>
+
+        <a href="{{ url_for('registro') }}" class="boton boton-principal">
+            Registrarse
+        </a>
+
+    {% endif %}
+
+</div>
+            </a>
+        </div>
+
+    </header>
+
+    <!-- PORTADA -->
+    <main>
+
+        <section class="portada">
+
+            <div class="portada-contenido">
+
+                <span class="etiqueta">PAN ARTESANAL</span>
+
+                <h1>
+                    El sabor de lo tradicional,
+                    <span>cada día.</span>
+                </h1>
+
+                <p>
+                    En Panadería Susan elaboramos productos frescos,
+                    con ingredientes de calidad y el auténtico
+                    sabor casero.
+                </p>
+
+                <div class="portada-botones">
+                    <a href="{{ url_for('catalogo') }}" class="boton boton-principal">
+                     Ver catálogo
+                    </a>
+
+                    <a href="{{ url_for('login') }}"
+                       class="boton boton-secundario">
+                        Iniciar sesión
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="portada-decoracion">
+                <span>🥐</span>
+                <span>🥖</span>
+                <span>🥨</span>
+            </div>
+
+        </section>
+
+        <!-- BENEFICIOS -->
+        <section class="beneficios">
+
+            <article>
+                <span>🌾</span>
+                <p>Ingredientes de calidad</p>
+            </article>
+
+            <article>
+                <span>🥖</span>
+                <p>Pan fresco todos los días</p>
+            </article>
+
+            <article>
+                <span>🍞</span>
+                <p>Variedad de productos</p>
+            </article>
+
+            <article>
+                <span>♡</span>
+                <p>Atención personalizada</p>
+            </article>
+
+        </section>
+
+
+<!-- NOSOTROS -->
+
+<section class="nosotros" id="nosotros">
+
+    <div class="nosotros-contenedor">
+
+        <div class="nosotros-texto">
+            <span class="nosotros-etiqueta">Nuestra historia</span>
+
+            <h2>Tradición y sabor desde 1950</h2>
+
+            <p>
+                En Panadería Susan creemos que el buen pan se elabora
+                con dedicación, ingredientes de calidad y mucho cariño.
+            </p>
+
+            <p>
+                Desde 1950 compartimos con las familias el sabor del
+                pan tradicional, conservando las recetas y la tradición
+                artesanal que nos caracteriza.
+            </p>
+
+            <p>
+                Nuestro compromiso es ofrecer productos frescos,
+                deliciosos y elaborados con pasión, llevando a cada
+                hogar un pedacito de nuestra historia.
+            </p>
+
+            <div class="nosotros-frase">
+                "El sabor de la tradición en cada pieza de pan."
+            </div>
+        </div>
+
+        <div class="nosotros-galeria">
+    <!-- Imagen principal:  -->
+            <div class="nosotros-imagen-principal">
+                <img src="{{ url_for('static', filename='img/nosotros3.jpg') }}"
+                     alt="Pan artesanal de Panadería Susan">
+            </div>
+    <!-- Imágenes secundarias -->
+            <div class="nosotros-imagen-secundaria">
+                <img src="{{ url_for('static', filename='img/nosotros2.png') }}"
+                     alt="Elaboración tradicional del pan">
+
+                <img src="{{ url_for('static', filename='img/nosotros2.jpg') }}"
+                     alt="Variedad de pan tradicional">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <p>
+        En Panadería Susan queremos acompañarte con el sabor
+        del pan artesanal, la calidez de lo tradicional y
+        productos para compartir en familia.
+    </p>
+
+</section>    

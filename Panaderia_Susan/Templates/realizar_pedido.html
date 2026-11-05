@@ -1,0 +1,149 @@
+
+{% extends "base.html" %}
+
+{% block title %}Finalizar compra | Panadería Susan{% endblock %}
+
+{% block content %}
+
+<section class="finalizar-compra">
+
+    <!-- ENCABEZADO -->
+    <div class="compra-encabezado">
+
+        <span class="compra-etiqueta">PANADERÍA SUSAN</span>
+
+        <h1>Finalizar compra</h1>
+
+        <p>¡Ya casi disfrutas de nuestros productos artesanales!</p>
+
+        <p>Completa los siguientes datos para confirmar tu pedido.</p>
+
+    </div>
+
+    <div class="compra-contenido">
+
+        <form method="POST" class="formulario-compra">
+
+            <!-- DATOS DE ENTREGA -->
+            <div class="compra-card">
+
+                <div class="compra-card-titulo">
+
+                    <span>01</span>
+
+                    <div>
+                        <h2>Datos de entrega</h2>
+                        <p>Indícanos dónde y cuándo recibirás tu pedido.</p>
+                    </div>
+
+                </div>
+
+                <div class="campo-compra">
+
+                    <label for="lugar_entrega">
+                        Dirección o punto de entrega
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lugar_entrega"
+                        name="lugar_entrega"
+                        placeholder="Ej. Calle, colonia o punto acordado"
+                        maxlength="255"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo-compra">
+
+                    <label for="fecha_entrega">
+                        Fecha de entrega
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fecha_entrega"
+                        name="fecha_entrega"
+                        min="{{ fecha_minima }}"
+                        required
+                    >
+
+                    <small>
+                        Selecciona una fecha igual o posterior a hoy.
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- MÉTODO DE PAGO -->
+            <div class="compra-card">
+
+                <div class="compra-card-titulo">
+
+                    <span>02</span>
+
+                    <div>
+                        <h2>Método de pago</h2>
+                        <p>Selecciona cómo deseas realizar tu pago.</p>
+                    </div>
+
+                </div>
+
+                <div class="campo-compra">
+
+                    <label for="metodo_pago">
+                        Método de pago
+                    </label>
+
+                    <select
+                        id="metodo_pago"
+                        name="metodo_pago"
+                        required
+                    >
+
+                        <option value="">
+                            Seleccionar método
+                        </option>
+
+                        <option value="Efectivo">
+                            Efectivo
+                        </option>
+
+                    </select>
+
+                    <small>
+                        El pago se registrará como pendiente hasta su confirmación.
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- BOTONES -->
+            <div class="compra-acciones">
+
+                <a
+                    href="{{ url_for('carrito') }}"
+                    class="compra-regresar"
+                >
+                    ← Regresar al carrito
+                </a>
+
+                <button
+                    type="submit"
+                    class="compra-confirmar"
+                >
+                    Confirmar pedido
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

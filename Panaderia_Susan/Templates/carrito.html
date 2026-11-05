@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Mi carrito | Panadería Susan{% endblock %}
+
+{% block content %}
+
+<section class="carrito">
+
+    <div class="carrito-encabezado">
+        <h1>Mi carrito de compras</h1>
+        <p>Revisa las empanadas que seleccionaste.</p>
+    </div>
+
+    {% if productos %}
+
+        <div class="carrito-contenido">
+
+            {% for producto in productos %}
+
+                <article class="carrito-producto">
+
+                    <img
+                        src="{{ url_for('static', filename='img/' + producto.imagen) }}"
+                        alt="{{ producto.nombre }}"
+                    >
+
+                    <div class="carrito-producto-info">
+
+                        <h3>{{ producto.nombre }}</h3>
+
+                        <p>
+                            Precio:
+                            ${{ "%.2f"|format(producto.precio) }}
+                        </p>
+
+                        <p>
+                            Cantidad:
+                            {{ producto.cantidad }}
+                        </p>
+
+                        <p class="carrito-subtotal">
+                            Subtotal:
+                            ${{ "%.2f"|format(producto.subtotal) }}
+                        </p>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="carrito-total">
+
+            <h2>
+                Total:
+                ${{ "%.2f"|format(total) }}
+            </h2>
+
+            <a href="{{ url_for('catalogo') }}" class="btn-seguir">
+                Seguir comprando
+               
+            </a>
+
+            <a href="{{ url_for('realizar_pedido') }}" class="btn-pedido">
+                Realizar pedido
+            </a>
+
+        </div>
+
+    {% else %}
+
+        <div class="carrito-vacio">
+
+            <h2>Tu carrito está vacío</h2>
+
+            <p>Aún no has agregado ninguna empanada.</p>
+
+            <a href="{{ url_for('catalogo') }}" class="btn-seguir">
+                Ver catálogo
+
+            </a>
+            
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

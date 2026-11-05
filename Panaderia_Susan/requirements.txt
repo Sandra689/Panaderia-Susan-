@@ -1,0 +1,5 @@
+
+Flask
+PyMySQL
+python-dotenv
+reportlab>=4.2,<5

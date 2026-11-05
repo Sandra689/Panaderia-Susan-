@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Panadería Susan{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
+
+        <!-- LOGOTIPO -->
+        <a href="{{ url_for('inicio') }}" class="logo">
+            <span class="logo-icono">🥖</span>
+            <span>Panadería Susan</span>
+        </a>
+
+        <!-- NAVEGACIÓN -->
+        <nav class="navegacion">
+
+            <a href="{{ url_for('inicio') }}">
+                Inicio
+            </a>
+
+            <a href="{{ url_for('catalogo') }}">
+                Catálogo
+            </a>
+
+            <a href="{{ url_for('inicio') }}#nosotros">
+                Nosotros
+            </a>
+
+        </nav>
+
+        <!-- ACCIONES DEL USUARIO -->
+       <!-- ACCIONES DEL USUARIO -->
+<div class="acciones">
+
+    {% if session.get('usuario_id') %}
+
+        <span class="usuario-bienvenida">
+            Hola, {{ session.get('usuario_nombre') }}
+        </span>
+
+        <a href="{{ url_for('cerrar_sesion') }}" class="enlace-login">
+            Cerrar sesión
+        </a>
+
+    {% else %}
+
+        <a href="{{ url_for('login') }}" class="enlace-login">
+            Iniciar sesión
+        </a>
+
+        <a href="{{ url_for('registro') }}"
+           class="boton boton-principal">
+            Registrarse
+        </a>
+
+    {% endif %}
+
+            <!-- CARRITO -->
+            <a href="{{ url_for('carrito') }}" class="enlace-carrito">
+                🛒 Carrito
+                <span class="contador-carrito">
+                    {{ cantidad_carrito|default(0) }}
+                </span>
+            </a>
+
+        </div>
+
+    </header>
+
+    <!-- MENSAJES DEL SISTEMA -->
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+        {% if mensajes %}
+            <div class="mensajes">
+                {% for categoria, mensaje in mensajes %}
+                    <div class="mensaje {{ categoria }}">
+                        {{ mensaje }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- CONTENIDO DE LAS PÁGINAS -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="pie-pagina">
+        <p>© 2026 Panadería Susan. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
+

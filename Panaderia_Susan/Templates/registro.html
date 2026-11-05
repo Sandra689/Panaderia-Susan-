@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Crear cuenta | Panadería Susan{% endblock %}
+
+{% block content %}
+
+<section class="autenticacion">
+
+    <div class="autenticacion-imagen">
+        <span class="autenticacion-icono">🌾</span>
+
+        <h1>Únete a nuestra comunidad</h1>
+
+        <p>
+            Descubre nuestros productos y disfruta
+            del auténtico sabor del pan artesanal.
+        </p>
+
+        <div class="decoracion-pan">🥖 🥐 🍞</div>
+    </div>
+
+    <div class="formulario-contenedor">
+
+        <h2>Crear una cuenta</h2>
+
+        <p class="formulario-descripcion">
+            Regístrate para disfrutar de nuestros productos
+            y realizar tus pedidos.
+        </p>
+
+        {% if mensaje %}
+            <div class="mensaje">{{ mensaje }}</div>
+        {% endif %}
+
+        <form action="{{ url_for('registro') }}" method="POST">
+
+            <label for="nombre">Nombre completo</label>
+
+            <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Escribe tu nombre"
+                autocomplete="name"
+                minlength="3"
+                maxlength="100"
+                required
+            >
+
+            <label for="correo">Correo electrónico</label>
+
+            <input
+                type="email"
+                id="correo"
+                name="correo"
+                placeholder="tucorreo@ejemplo.com"
+                autocomplete="email"
+                required
+            >
+
+            <label for="contrasena">Contraseña</label>
+
+            <input
+                type="password"
+                id="contrasena"
+                name="contrasena"
+                placeholder="Mínimo 8 caracteres"
+                autocomplete="new-password"
+                minlength="8"
+                required
+            >
+
+            <label for="confirmar_contrasena">
+                Confirmar contraseña
+            </label>
+
+            <input
+                type="password"
+                id="confirmar_contrasena"
+                name="confirmar_contrasena"
+                placeholder="Escribe nuevamente tu contraseña"
+                autocomplete="new-password"
+                minlength="8"
+                required
+            >
+
+            <label class="terminos">
+                <input type="checkbox" name="acepta_terminos" required>
+                Acepto los términos y condiciones.
+            </label>
+
+            <button type="submit" class="boton boton-principal boton-ancho">
+                Crear cuenta
+            </button>
+
+        </form>
+
+        <p class="texto-alternativo">
+            ¿Ya tienes una cuenta?
+            <a href="{{ url_for('login') }}">Inicia sesión</a>
+        </p>
+
+        <a href="{{ url_for('inicio') }}" class="volver-inicio">
+            ← Volver al inicio
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
